@@ -1,7 +1,7 @@
 <?php
 //============================================================
 //Autor: Alexandre
-//Abertura de registros de Incidentes via PHP - Out/2015
+//Abertura de registros de Incidentes no ITSM Remedy via PHP - Out/2015
 //============================================================
 
 //Armazena a estrutura XML na variavel input_xml
@@ -38,7 +38,7 @@ $input_xml = '
 ';
 
 
-//Utilizados o CURL do PHP para fazer requisições ao WebService ITSM Remedy
+//Utilizamos CURL do PHP para fazer requisições ao WebService ITSM Remedy
 //http://<midtier_server>/arsys/WSDL/public/<servername>/HPD_IncidentInterface_Create_WS
 $url = "http://YOUR-URL/arsys/services/ARService?server=YOUR-APPSERVER&webService=HPD_IncidentInterface_Create_WS";
 //Monta o header
@@ -49,22 +49,22 @@ $headers = array(
             "Content-Type: text/xml;charset=UTF-8"
         ); 
 
-    //Configurando os parametros do curl
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
+	//Configurando os parametros do curl
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
 	//curl_setopt($ch, CURLOPT_HEADER, true); //Mostra header da página retornada
 	curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-    $data = curl_exec($ch);
-    curl_close($ch);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+	$data = curl_exec($ch);
+	curl_close($ch);
 	
 	//Imprime retorno da requisição
-    print_r('<pre>');
+	print_r('<pre>');
 	print_r($data);
-    print_r('</pre>');
+	print_r('</pre>');
 	
 ?>
