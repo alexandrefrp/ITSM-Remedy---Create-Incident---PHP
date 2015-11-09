@@ -49,22 +49,23 @@ $headers = array(
             "Content-Type: text/xml;charset=UTF-8"
         ); 
 
-	//Configurando os parametros do curl
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	//curl_setopt($ch, CURLOPT_HEADER, true); //Mostra header da página retornada
-	curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-	$data = curl_exec($ch);
-	curl_close($ch);
-	
-	//Imprime retorno da requisição
-	print_r('<pre>');
-	print_r($data);
-	print_r('</pre>');
+//Configurando os parametros do curl
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+//curl_setopt($ch, CURLOPT_HEADER, true); //Mostra header da página retornada
+curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //Ignora erros de certificados
+$data = curl_exec($ch);
+curl_close($ch);
+
+//Imprime retorno da requisição
+print_r('<pre>');
+print_r($data);
+print_r('</pre>');
 	
 ?>
